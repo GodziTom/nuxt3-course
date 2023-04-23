@@ -9,9 +9,26 @@
 
     // const route = useRoute()
     // console.log(route);
+    const description = ref('My amazing site.')
+    useHead({
+        title : 'DT Merch',
+        meta: [
+            { name: 'description', content: description, title : 'DT Merch' },
+        ],
+        link : [
+            { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+            { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+            { href: 'https://fonts.googleapis.com/css2?family=Roboto&display=swap', rel: 'stylesheet' }
+        ],
+        script: [ { innerHTML: 'console.log(\'Hello world\')' } ]
+    })
 </script>
 
 <template>
+    <!-- <head>
+        <title>DT Merch</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+    </head> -->
     <div class="flex h-full">
        
             <!-- START : SIDEBAR -->
