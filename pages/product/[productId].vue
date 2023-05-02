@@ -3,6 +3,7 @@
   import { StarIcon as EmptyStarIcon } from '@heroicons/vue/outline'
 
 const route = useRoute()
+
 const productId = route.params.productId
 const {data: product,pending,error } = await useLazyFetch(`http://localhost:3001/products/${productId}?_embed=reviews`)
 
@@ -15,11 +16,11 @@ const reviewsAvg = computed(() => {
     }
 })
 
+const variantSelect = ref(null)
+const {addProductToCart}  = useCart()
 
-console.log({reviewsAvg})
 
 
-// console.log({data});
 
 </script>
 
@@ -36,7 +37,7 @@ console.log({reviewsAvg})
                             Catégorie
                         </li> 
                         <li>
-                            <NuxtLink :to="'/category/' + product.category">{{ product.category }}</NuxtLink>
+                            <NuxtLink :to="'/category/' + product.category">{{ $getCategoryTitle(product.category) }}</NuxtLink>
                         </li>
                         <li>
                             <span class="text-base-content/75">Ce produit</span>
@@ -64,10 +65,10 @@ console.log({reviewsAvg})
                 </p>
         
                 <form class="mt-8" @submit.prevent>
-                    <select v-if="product.variants" class="select select-bordered w-full max-w-xs">
+                    <select ref="variantSelect" v-if="product.variants" class="select select-bordered w-full max-w-xs">
                         <option v-for="variant in product.variants" :selected="variant === product.defaultVariant">{{ variant }}</option> 
                     </select>
-                    <button class="w-full mt-4 btn">Ajouter au panier</button> 
+                    <button class="w-full mt-4 btn" @click="addProductToCart(product, variantSelect)">Ajouter au panier</button> 
                     <button class="w-full mt-4 btn btn-primary">Acheter maintenant</button> 
                 </form>
             </div>
