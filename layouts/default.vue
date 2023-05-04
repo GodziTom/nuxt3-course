@@ -5,10 +5,10 @@ import { ShoppingBagIcon } from '@heroicons/vue/outline'
 
 
 
-    const categories = useCategories()
+    const config = useRuntimeConfig()
     const { totalProducts} = useCart()
     
-    const menuCategoryItems = categories.value.map(category => {
+    const menuCategoryItems = config.public['categories'].map(category => {
         return {
             path : '/category/' + category.id,
             title : category.title

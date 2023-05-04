@@ -1,3 +1,8 @@
+<!-- <script setup>
+  definePageMeta({
+    middleware: ['log']
+  })
+</script> -->
 
 <template>
    <div class="hero min-h-screen" style="background-image: url('https://picsum.photos/id/1005/400/250');">

@@ -60,7 +60,8 @@ export const useCart = () => {
           selectedProduct.variants.push(variantSelect.value)
         }
       }
-  
+      const { $toast } = useNuxtApp()
+      $toast.success('Produit ajouté au panier')
     }
   
     // Removing a product from the cart by its id
@@ -68,6 +69,8 @@ export const useCart = () => {
       const productIndexInCart = selectedProducts.value.findIndex(cartProduct => cartProduct.id === productId)
       if (productIndexInCart !== -1) {
         selectedProducts.value.splice(productIndexInCart, 1)
+        const { $toast } = useNuxtApp()
+        $toast.warning('Produit retiré au panier')
       } else {
         console.warn(`Product n°${productId} not found in cart`)
       }
